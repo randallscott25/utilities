@@ -256,7 +256,7 @@ def plot_confusion_matrix(cm, classes, normalize=False, title='Confusion matrix"
     plt.tight_layout()
     plt.ylabel('True label')
     plt.xlabel('Predicted label')
-    plt.savefig('confusion_matrix.png' dpi=300)
+    plt.savefig('confusion_matrix.png', dpi=300)
     plt.show()
 
 
@@ -277,7 +277,7 @@ def visualize_image_variations(X_train, y_train, vis_img, numImgsToVis, imgShape
     ax[0].set_xticks([])
     ax[0].set_yticks([])
     plt.tight_layout()
-    plt.savefig('visualize_image_variations.png' dpi=600)
+    plt.savefig('visualize_image_variations.png', dpi=600)
     plt.show()
 
 
