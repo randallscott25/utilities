@@ -460,7 +460,7 @@ def train_validate_classifier(clf, modelName, X, y, X_predict, y_predict, record
     if sh_logger.info: print(f'\nConfusion Matrix Report:\n{cm}')
 
     # plot confusion matrix evaluation
-    if sh_logger.info: plot_confusion_matrix(cm, classes=labels)
+    if sh_logger.info: plot_confusion_matrix(cm,saveImgAs, classes=labels)
 
     return clf
 
