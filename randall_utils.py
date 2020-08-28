@@ -235,10 +235,10 @@ def labelEncoding(train_df, test_df):
 import matplotlib.pyplot as plt
 
 
-def plot_confusion_matrix(cm, classes, saveImgAs, normalize=False, title='Confusion matrix"', cmap=plt.cm.Blues):
+def plot_confusion_matrix(cm, classes,  normalize=False, title='Confusion matrix"', cmap=plt.cm.Blues):
     import numpy as np
     import itertools
-    # from sklearn.metrics import confusion_matrix
+    from sklearn.metrics import confusion_matrix
 
     plt.imshow(cm, interpolation='nearest', cmap=cmap)
     plt.title(title)
@@ -256,7 +256,7 @@ def plot_confusion_matrix(cm, classes, saveImgAs, normalize=False, title='Confus
     plt.tight_layout()
     plt.ylabel('True label')
     plt.xlabel('Predicted label')
-    plt.savefig(saveImgAs, dpi=300)
+    plt.savefig('c-m.png', dpi=300)
     plt.show()
 
 
@@ -265,7 +265,7 @@ Visualize different variations of training image
 '''
 
 
-def visualize_image_variations(X_train, y_train, vis_img, numImgsToVis, imgShape, saveImgAs):
+def visualize_image_variations(X_train, y_train, vis_img, numImgsToVis, imgShape, ):
     import matplotlib.pyplot as plt
 
     fig, ax = plt.subplots(nrows=5, ncols=4, sharex=True, sharey=True)
@@ -277,7 +277,7 @@ def visualize_image_variations(X_train, y_train, vis_img, numImgsToVis, imgShape
     ax[0].set_xticks([])
     ax[0].set_yticks([])
     plt.tight_layout()
-    plt.savefig(saveImgAs, dpi=600)
+    plt.savefig('viusal_image_variations.png', dpi=600)
     plt.show()
 
 
@@ -453,14 +453,15 @@ def train_validate_classifier(clf, modelName, X, y, X_predict, y_predict, record
 
     # print classification report table
     targetNames = ["Class{}".format(i) for i in range(n_classes)]
-    if sh_logger.info: print(f'\n{classification_report(y_predict, clf_val_pred, target_names=targetNames)}')
+    
+    if sh_logger.info:print(f'\n{classification_report(y_predict, clf_val_pred, target_names=targetNames)}')
 
     # print confusion matrix report
     cm = confusion_matrix(y_predict, clf_val_pred, labels=labels)
     if sh_logger.info: print(f'\nConfusion Matrix Report:\n{cm}')
 
     # plot confusion matrix evaluation
-    if sh_logger.info: plot_confusion_matrix(cm,saveImgAs, classes=labels)
+    if sh_logger.info: plot_confusion_matrix(cm, classes=labels)
 
     return clf
 
